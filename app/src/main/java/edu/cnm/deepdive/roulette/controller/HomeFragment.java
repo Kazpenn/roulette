@@ -20,6 +20,12 @@ import java.util.Random;
 
 public class HomeFragment extends Fragment {
 
+  private static final int MIN_ROTATION_TIME = 2000;
+  public static final int MAX_ROTATION_TIME = 5000;
+  public static final int DEGREES_PER_REVOLUTION = 360;
+  public static final int MIN_FULL_ROTATIONS = 3;
+  public static final int MAX_FULL_ROTATIONS = 5;
+
   private HomeViewModel homeViewModel;
   private FragmentHomeBinding binding;
   private boolean spinning;
@@ -64,12 +70,13 @@ public class HomeFragment extends Fragment {
         float centerX = binding.rouletteWheel.getWidth() / 2f;
         float centerY = binding.rouletteWheel.getHeight() / 2f;
         float currentRotation = binding.rouletteWheel.getRotation();
-        float finalRotation = - 360 * pocketIndex / 38f;
+        float finalRotation = -DEGREES_PER_REVOLUTION * pocketIndex / (float) HomeViewModel.POCKETS_ON_WHEEL;
         binding.rouletteWheel.setPivotX(centerX);
         binding.rouletteWheel.setPivotY(centerY);
         RotateAnimation rotation = new RotateAnimation(
-            0, (finalRotation - currentRotation) - 360 * (3 + rng.nextInt(3)), centerX, centerY);
-        rotation.setDuration(2000 + rng.nextInt(3000));
+            0, (finalRotation - currentRotation) - DEGREES_PER_REVOLUTION * (MIN_FULL_ROTATIONS + rng.nextInt(
+            MAX_FULL_ROTATIONS - MIN_FULL_ROTATIONS + 1)), centerX, centerY);
+        rotation.setDuration(MIN_ROTATION_TIME + rng.nextInt(MAX_ROTATION_TIME));
         rotation.setAnimationListener(new AnimationFinalizer(finalRotation));
         binding.rouletteWheel.startAnimation(rotation);
       }
