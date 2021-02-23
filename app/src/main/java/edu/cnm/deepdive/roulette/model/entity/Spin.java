@@ -24,12 +24,25 @@ public class Spin {
     return id;
   }
 
+  public void setId(long id) {
+    this.id = id;
+  }
+
   @NonNull
   public Date getTimestamp() {
     return timestamp;
   }
 
+  public void setTimestamp(@NonNull Date timestamp) {
+    this.timestamp = timestamp;
+  }
+
   public Integer getValue() {
     return value;
   }
+
+  public void setValue(Integer value) {
+    this.value = value;
+  }
+
 }
