@@ -11,14 +11,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
-import edu.cnm.deepdive.roulette.databinding.FragmentHomeBinding;
-import edu.cnm.deepdive.roulette.viewmodel.HomeViewModel;
+import edu.cnm.deepdive.roulette.databinding.FragmentPlayBinding;
+import edu.cnm.deepdive.roulette.viewmodel.PlayViewModel;
 import java.security.SecureRandom;
 import java.util.Random;
 
-public class HomeFragment extends Fragment {
+public class PlayFragment extends Fragment {
 
   private static final int MIN_ROTATION_TIME = 2000;
   public static final int MAX_ROTATION_TIME = 5000;
@@ -26,8 +27,8 @@ public class HomeFragment extends Fragment {
   public static final int MIN_FULL_ROTATIONS = 3;
   public static final int MAX_FULL_ROTATIONS = 5;
 
-  private HomeViewModel homeViewModel;
-  private FragmentHomeBinding binding;
+  private FragmentPlayBinding binding;
+  private PlayViewModel playViewModel;
   private boolean spinning;
   private Random rng;
 
@@ -39,8 +40,12 @@ public class HomeFragment extends Fragment {
 
   public View onCreateView(@NonNull LayoutInflater inflater,
       ViewGroup container, Bundle savedInstanceState) {
-    binding = FragmentHomeBinding.inflate(inflater, container, false);
+    binding = FragmentPlayBinding.inflate(inflater, container, false);
     binding.spinWheel.setOnClickListener((view) -> spinWheel());
+    binding.placeWager.setOnClickListener((v) -> {
+      Navigation.findNavController(binding.getRoot())
+          .navigate(PlayFragmentDirections.actionNavigationPlayToNavigationWager());
+    });
     return binding.getRoot();
   }
 
@@ -49,19 +54,20 @@ public class HomeFragment extends Fragment {
       spinning = true;
       binding.spinWheel.setEnabled(false);
       binding.rouletteValue.setVisibility(View.INVISIBLE);
-      homeViewModel.spinWheel();
+      playViewModel.spinWheel();
     }
   }
 
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
-    homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
-    getLifecycle().addObserver(homeViewModel);
-    homeViewModel.getRouletteValue().observe(getViewLifecycleOwner(),
+    //noinspection ConstantConditions
+    playViewModel = new ViewModelProvider(getActivity()).get(PlayViewModel.class);
+    getLifecycle().addObserver(playViewModel);
+    playViewModel.getRouletteValue().observe(getViewLifecycleOwner(),
         (s) -> binding.rouletteValue.setText(s));
-    homeViewModel.getPocketIndex().observe(getViewLifecycleOwner(), this::startAnimation);
-    homeViewModel.getThrowable().observe(getViewLifecycleOwner(), (throwable) -> {
+    playViewModel.getPocketIndex().observe(getViewLifecycleOwner(), this::startAnimation);
+    playViewModel.getThrowable().observe(getViewLifecycleOwner(), (throwable) -> {
       if (throwable != null) {
         //noinspection ConstantConditions
         Snackbar.make(getContext(), binding.getRoot(), throwable.getMessage(),
@@ -75,7 +81,7 @@ public class HomeFragment extends Fragment {
     float centerY = binding.rouletteWheel.getHeight() / 2f;
     float currentRotation = binding.rouletteWheel.getRotation();
     float finalRotation =
-        -DEGREES_PER_REVOLUTION * pocketIndex / (float) HomeViewModel.POCKETS_ON_WHEEL;
+        -DEGREES_PER_REVOLUTION * pocketIndex / (float) PlayViewModel.POCKETS_ON_WHEEL;
     binding.rouletteWheel.setPivotX(centerX);
     binding.rouletteWheel.setPivotY(centerY);
     RotateAnimation rotation = new RotateAnimation(
