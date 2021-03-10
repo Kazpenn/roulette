@@ -13,6 +13,20 @@
   android:title="@string/minimum_wager_title"
   android:summary="@string/minimum_wager_summary"/>
 
+<SeekBarPreference
+  android:key="@string/starting_pot_key"
+  android:title="@string/starting_pot_title"
+  android:summary="@string/starting_pot_summary"
+  app:min="@integer/starting_pot_min"
+  android:max="@integer/starting_pot_max"
+  app:seekBarIncrement="@integer/starting_pot_increment"
+  android:defaultValue="@integer/starting_pot_default"
+  app:showSeekBarValue="true"/>
 
+  <SwitchPreference
+    android:key="@string/wager_riding_key"
+    android:title="@string/wager_riding_title"
+    android:summary="@string/wager_riding_summary"
+    android:defaultValue="@bool/wager_riding_default"/>
 
 </PreferenceScreen>
