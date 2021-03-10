@@ -51,18 +51,24 @@ public class MainActivity extends AppCompatActivity {
     boolean handled = true;
     switch (item.getItemId()) {
       case R.id.sign_out:
-        GoogleSignInService
-            .getInstance()
-            .signOut()
-            .addOnCompleteListener((ignored) -> startActivity(new Intent(this, LoginActivity.class)
-                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK)
-            ));
+        signOut();
         break;
-        // Add more cases as necessary
+      case R.id.settings:
+        navController.navigate(R.id.navigation_settings);
+        break;
       default:
         handled = super.onOptionsItemSelected(item);
     }
     return handled;
+  }
+
+  private void signOut() {
+    GoogleSignInService
+        .getInstance()
+        .signOut()
+        .addOnCompleteListener((ignored) -> startActivity(new Intent(this, LoginActivity.class)
+                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK)
+        ));
   }
 
 }
