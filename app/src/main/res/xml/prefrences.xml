@@ -5,13 +5,14 @@
 
 <SeekBarPreference
   android:key="@string/minimum_wager_key"
+  android:title="@string/minimum_wager_title"
+  android:summary="@string/minimum_wager_summary"
   app:min="@integer/minimum_wager_min"
   android:max="@integer/minimum_wager_max"
   android:defaultValue="@integer/minimum_wager_default"
   app:seekBarIncrement="@integer/minimum_wager_increment"
   app:showSeekBarValue="true"
-  android:title="@string/minimum_wager_title"
-  android:summary="@string/minimum_wager_summary"/>
+  android:icon="@drawable/ic_dollar"/>
 
 <SeekBarPreference
   android:key="@string/starting_pot_key"
@@ -21,12 +22,14 @@
   android:max="@integer/starting_pot_max"
   app:seekBarIncrement="@integer/starting_pot_increment"
   android:defaultValue="@integer/starting_pot_default"
-  app:showSeekBarValue="true"/>
+  app:showSeekBarValue="true"
+  android:icon="@drawable/ic_starting_pot"/>
 
   <SwitchPreference
     android:key="@string/wager_riding_key"
     android:title="@string/wager_riding_title"
     android:summary="@string/wager_riding_summary"
-    android:defaultValue="@bool/wager_riding_default"/>
+    android:defaultValue="@bool/wager_riding_default"
+    android:icon="@drawable/ic_let_it_ride"/>
 
 </PreferenceScreen>
