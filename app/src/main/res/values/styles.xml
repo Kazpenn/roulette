@@ -8,10 +8,21 @@
     <item name="colorPrimarySurface">@color/colorPrimarySurface</item>
   </style>
 
-  <style name = "StatisticsHeader" parent="TextAppearance.AppCompat.Medium">
+  <color name="colorPrimarySurface">#EFEBE9</color>
+
+  <style name="StatisticsHeader" parent="TextAppearance.AppCompat.Medium">
     <item name="android:textStyle">bold</item>
     <item name="android:textAlignment">center</item>
   </style>
 
-  <color name="colorPrimarySurface">#EFEBE9</color>
+  <style name="CurrentPotValue" parent="TextAppearance.AppCompat.Medium.Inverse">
+    <item name="android:textStyle">bold</item>
+    <item name="android:textColor">#FFFFFFFF</item>
+    <item name="android:shadowColor">#FF000000</item>
+    <item name="android:shadowDx">2</item>
+    <item name="android:shadowDy">2</item>
+    <item name="android:shadowRadius">2</item>
+  </style>
+
+
 </resources>
