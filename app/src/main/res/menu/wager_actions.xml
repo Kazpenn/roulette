@@ -3,10 +3,10 @@
 
   <item
     android:id="@+id/amount"
-    android:title="Amount placeholder"/>
+    android:title="Amount placeholder"
+    android:enabled="false"/>
 
   <item
     android:id="@+id/clear"
-    android:title="CLear wager"
-    />
+    android:title="CLear wager"/>
 </menu>
