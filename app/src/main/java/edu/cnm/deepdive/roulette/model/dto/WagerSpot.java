@@ -11,4 +11,9 @@ public interface WagerSpot {
   int getColorResource();
 
   int getPayout();
+
+  int hashCode();
+
+  boolean equals(Object obj);
+
 }

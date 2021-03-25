@@ -1,7 +1,9 @@
 package edu.cnm.deepdive.roulette.model.dto;
 
+import androidx.annotation.Nullable;
 import com.google.gson.annotations.Expose;
 import edu.cnm.deepdive.roulette.model.type.Color;
+import java.util.Objects;
 
 public class ColorDto implements WagerSpot{
 
@@ -23,6 +25,10 @@ public class ColorDto implements WagerSpot{
   private int payout;
 
   private Color color;
+
+  private boolean hashComputed;
+
+  private int hash;
 
   public String getName() {
     return name;
@@ -79,4 +85,25 @@ public class ColorDto implements WagerSpot{
   public void setColor(Color color) {
     this.color = color;
   }
+
+  @Override
+  public int hashCode() {
+    if (!hashComputed) {
+      hash = Objects.hash(name, spot);
+    }
+    return hash;
+  }
+
+  @Override
+  public boolean equals(@Nullable Object obj) {
+    boolean equal = false;
+    if(this == obj) {
+      equal = true;
+    } else if (obj instanceof ColorDto) {
+      ColorDto other = (ColorDto) obj;
+      equal = name.equals(other.name) && spot == other.spot;
+    }
+    return equal;
+  }
+
 }
