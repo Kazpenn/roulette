@@ -20,8 +20,8 @@ public class PreferenceRepository {
   }
 
   public int getMinimumWager() {
-    return preferences.getInt(resources.getString(R.string.maximum_wager_key),
-        resources.getInteger(R.integer.maximum_wager_default));
+    return preferences.getInt(resources.getString(R.string.minimum_wager_key),
+        resources.getInteger(R.integer.minimum_wager_default));
   }
 
   public int getStartingPot() {
