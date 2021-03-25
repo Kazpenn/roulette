@@ -17,9 +17,11 @@
   <string name="sign_out">Sign out</string>
   <string name="settings">Settings</string>
   <string name="long_title_settings">Roulette: Settings</string>
-  <string name="minimum_wager_key">minimum_wager_key</string>
-  <string name="minimum_wager_title">Minimum wager</string>
-  <string name="minimum_wager_summary">Wager set or added when clicking on a specific spot on the wager screen</string>
+
+  <string name="maximum_wager_key">maximum_wager_key</string>
+  <string name="maximum_wager_title">Maximum wager</string>
+  <string name="maximum_wager_summary">Maximum Wager set or added when clicking on a specific spot on the wager screen</string>
+
   <string name="starting_pot_key">starting+pot_key</string>
   <string name="starting_pot_title">Starting pot</string>
   <string name="starting_pot_summary">Number of chips available to bet at the start of the game</string>
@@ -30,6 +32,7 @@
   <string name="new_game">New Game</string>
   <string name="roulette_wheel_description">Roulette Wheel - click to spin</string>
   <string name="value_percent_format">%.2f</string>
+  <string name="current_wager_format">Current wager = $%d</string>
 
   <string-array name="pocket_values">
     <item>00</item>
@@ -70,5 +73,49 @@
     <item>36</item>
     <item>13</item>
     <item>1</item>
+  </string-array>
+
+  <string-array name="space_values">
+    <item>0</item>
+    <item>00</item>
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
+    <item>5</item>
+    <item>6</item>
+    <item>7</item>
+    <item>8</item>
+    <item>9</item>
+    <item>10</item>
+    <item>11</item>
+    <item>12</item>
+    <item>13</item>
+    <item>14</item>
+    <item>15</item>
+    <item>16</item>
+    <item>17</item>
+    <item>18</item>
+    <item>19</item>
+    <item>20</item>
+    <item>21</item>
+    <item>22</item>
+    <item>23</item>
+    <item>24</item>
+    <item>25</item>
+    <item>26</item>
+    <item>27</item>
+    <item>28</item>
+    <item>29</item>
+    <item>30</item>
+    <item>31</item>
+    <item>32</item>
+    <item>33</item>
+    <item>34</item>
+    <item>35</item>
+    <item>36</item>
+    <item>Black</item>
+    <item>Red</item>
+    <item>Green</item>
   </string-array>
 </resources>

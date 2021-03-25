@@ -2,15 +2,19 @@ package edu.cnm.deepdive.roulette.service;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.content.res.Resources;
 import androidx.preference.PreferenceManager;
 import edu.cnm.deepdive.roulette.R;
+import io.reactivex.Observable;
+
 
 public class PreferenceRepository {
 
   private final Context context;
   private final SharedPreferences preferences;
   private final Resources resources;
+  private OnSharedPreferenceChangeListener listener;
 
 
   public PreferenceRepository(Context context) {
@@ -19,9 +23,9 @@ public class PreferenceRepository {
     resources = context.getResources();
   }
 
-  public int getMinimumWager() {
-    return preferences.getInt(resources.getString(R.string.minimum_wager_key),
-        resources.getInteger(R.integer.minimum_wager_default));
+  public int getMaximumWager() {
+    return preferences.getInt(resources.getString(R.string.maximum_wager_key),
+        resources.getInteger(R.integer.maximum_wager_default));
   }
 
   public int getStartingPot() {
@@ -32,6 +36,17 @@ public class PreferenceRepository {
   public boolean isWagerRiding() {
     return preferences.getBoolean(resources.getString(R.string.wager_riding_key),
         resources.getBoolean(R.bool.wager_riding_default));
+  }
+
+  public Observable<Integer> maximumWager() {
+    return Observable.create((emitter) -> {
+      listener = (prefs, key) -> {
+        if (key.equals(resources.getString(R.string.maximum_wager_key))) {
+          emitter.onNext(prefs.getInt(key, resources.getInteger(R.integer.maximum_wager_default)));
+        }
+      };
+      preferences.registerOnSharedPreferenceChangeListener(listener);
+    });
   }
 
 }
