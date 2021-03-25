@@ -2,7 +2,7 @@ package edu.cnm.deepdive.roulette.model.dto;
 
 import com.google.gson.annotations.Expose;
 
-public class PocketDto {
+public class PocketDto implements WagerSpot {
 
   @Expose
   private String name;
@@ -24,6 +24,7 @@ public class PocketDto {
   @Expose
   private int payout;
 
+  @Override
   public String getName() {
     return name;
   }
@@ -40,6 +41,7 @@ public class PocketDto {
     this.position = position;
   }
 
+  @Override
   public int getSpot() {
     return spot;
   }
@@ -48,6 +50,7 @@ public class PocketDto {
     this.spot = spot;
   }
 
+  @Override
   public int getSpan() {
     return span;
   }
@@ -72,6 +75,12 @@ public class PocketDto {
     this.colorDto = colorDto;
   }
 
+  @Override
+  public int getColorResource() {
+    return colorDto.getColorResource();
+  }
+
+  @Override
   public int getPayout() {
     return payout;
   }
