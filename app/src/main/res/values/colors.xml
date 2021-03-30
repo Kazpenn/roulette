@@ -10,4 +10,9 @@
   <color name="blackSpace">#A0000000</color>
   <color name="redSpace">#FFC00000</color>
   <color name="greenSpace">#FF4C8C4A</color>
+
+  <color name="netPositive">#4000FF00</color>
+  <color name="netNegative">#40FF0000</color>
+  <color name="netZero">#10000000</color>
+
 </resources>
