@@ -121,7 +121,11 @@ android.applicationVariants.all { variant ->
         source = variant.sourceSets.collect { it.java.sourceFiles }.inject { m, i -> m + i }
 
         doFirst {
-            classpath = project.files(variant.javaCompileProvider.get().classpath.files,
+            classpath = project.files(
+                    file(projectDir)
+                    .toPath()
+                    .resolve("build/intermediates/javac/${variant.name}/classes"),
+                    variant.javaCompileProvider.get().classpath.files,
                     project.android.getBootClasspath())
         }
 
@@ -142,6 +146,7 @@ android.applicationVariants.all { variant ->
             linkSource = false
             author = false
             links 'https://docs.oracle.com/javase/8/docs/api/'
+            links 'https://reactivex.io/RxJava/javadocs'
             linksOffline 'http://developer.android.com/reference', "$projectDir/.."
         }
 
